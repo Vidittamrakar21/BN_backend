@@ -350,7 +350,7 @@ app.patch('/api/blog/deletefromuser',async (req,res) =>{
     
      
       if(data){
-        const del = await User.updateOne({_id: uid}, {$pull:{blogposted: {_id: key}}},{ returnOriginal: false })
+        const del = await User.updateOne({_id: uid}, {$pull:{blogposted: {_id: newkey}}},{ returnOriginal: false })
         res.status(201).json({ message: "Blog deleted Successfully !"});
 
        }
