@@ -565,9 +565,19 @@ app.patch('/api/updateabout', async (req,res)=>{
 app.post('/api/user/logout', async (req, res)=>{
   try {
 
-    res.clearCookie("token");
-  
-    res.json({ message: 'Logged out successfully !' });
+    const {token} = req.cookies;
+
+    if(token){
+
+      
+      res.clearCookie("token");
+      
+      res.json({ message: 'Logged out successfully !' });
+    }
+
+    else{
+      res.json({ message: 'unable to log out.' });
+    }
     
   } catch (error) {
     console.log(error);
@@ -606,3 +616,4 @@ app.delete('/api/user/delete/:id',async (req,res) =>{
 app.listen(8080, ()=> {
   console.log("server started");
 })
+
