@@ -562,7 +562,7 @@ app.patch('/api/updateabout', async (req,res)=>{
   }
 })
 
-app.post('/api/user/logout', async (req, res)=>{
+app.get('/api/user/logout', async (req, res)=>{
   try {
 
     const {token} = req.cookies;
