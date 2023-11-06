@@ -24,7 +24,8 @@ app.use(cookieparser());
 app.use(morgan("tiny"));
 app.use(express.static('build'));
 app.use(fileupload({
-  useTempFiles: true
+  useTempFiles: true,
+  tempFileDir : '/tmp/'
 }))
 
 main().catch(err => console.log(err));
