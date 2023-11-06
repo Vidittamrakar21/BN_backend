@@ -93,8 +93,9 @@ const auth = (req,res,next) => {
       const file = req.files.file;
      await cloudinary.uploader.upload(file.tempFilePath, async (err,result)=>{
        if(result){
-        
-         const data = await User.updateOne({_id: id}, {image: result.url});
+        let imageURL = result.url;
+        imageURL = imageURL.replace('http://', 'https://');
+         const data = await User.updateOne({_id: id}, {image: imageURL});
          res.status(201).json({message: "Profile photo updated successfully !"})
         }
         else{
