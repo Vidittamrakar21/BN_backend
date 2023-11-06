@@ -14,10 +14,7 @@
     ],
 
     "routes": [
-         {
-            "src": "/(.*)",
-           "dest": "index.js"
-       },
+        
        
         {
              "src": "/api",
@@ -29,6 +26,11 @@
              "src": "/api/(.*)",
             "dest": "index.js"
         },
+
+        {
+            "src": "/",
+           "dest": "build/index.html"
+       },
 
           {
              "src": "/api/upload/:id",
@@ -54,10 +56,7 @@
             "dest": "index.js"
         },
 
-         {
-             "src": "/",
-            "dest": "build/index.html"
-        },
+        
 
         {
              "src": "/life",
