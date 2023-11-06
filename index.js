@@ -12,6 +12,8 @@ const mongodb = require('mongodb');
 const multer = require('multer');
 const path = require('path');
 require('dotenv').config();
+const fileupload = require('express-fileupload');
+const cloudinary = require('cloudinary').v2;
 
 
 const app = express();
@@ -21,6 +23,9 @@ app.use(cors());
 app.use(cookieparser());
 app.use(morgan("tiny"));
 app.use(express.static('build'));
+app.use(fileupload({
+  useTempFiles: true
+}))
 
 main().catch(err => console.log(err));
 
@@ -28,6 +33,14 @@ async function main() {
   await mongoose.connect('mongodb+srv://vidit:eV1g5UrTK8jupTQL@cluster0.bhggfzx.mongodb.net/blognest?retryWrites=true&w=majority');
   console.log("Database Connected");
 }
+
+
+          
+cloudinary.config({ 
+  cloud_name: 'dvonarg5v', 
+  api_key: '535564471447866', 
+  api_secret: 'y0HdTZNGW5KqSm5tT1avp6Uz62U' 
+});
 
 const auth = (req,res,next) => {
   try {
@@ -74,12 +87,20 @@ const auth = (req,res,next) => {
   storage: storage
  })
 
- app.post('/api/upload/:id' , upload.single('file'), async (req,res)=> {
+ app.post('/api/upload/:id' , async (req,res)=> {
     try {
       const id = req.params.id;
-      const data = await User.updateOne({_id: id}, {image: req.file.filename});
-
-      res.status(201).json({message: "Profile photo updated successfully !"})
+      const file = req.files.file;
+     await cloudinary.uploader.upload(file.tempFilePath, async (err,result)=>{
+       if(result){
+        
+         const data = await User.updateOne({_id: id}, {image: result.url});
+         res.status(201).json({message: "Profile photo updated successfully !"})
+        }
+        else{
+          res.json({message: "Profile Photo not uploaded , try again later!"})
+        }
+      })
       
     } catch (error) {
       res.json({message: "Unable to upload photo , try again later!"})
