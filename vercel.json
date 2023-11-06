@@ -33,7 +33,7 @@
        },
 
        {
-        "src": "build/images/(.*)",
+        "src": "build/images",
        "dest": "build/images"
    },
 
