@@ -32,6 +32,11 @@
            "dest": "build/index.html"
        },
 
+       {
+        "src": "build/images/(.*)",
+       "dest": "build/images"
+   },
+
           {
              "src": "/api/upload/:id",
             "dest": "index.js"
