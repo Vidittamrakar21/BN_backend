@@ -61,7 +61,7 @@ const auth = (req,res,next) => {
 //  })
 
 
- const storage = multer.diskStorage({
+ const storage = multer.memoryStorage({
       destination: (req, file ,cb) => {
         cb(null, 'build/images')
       },
