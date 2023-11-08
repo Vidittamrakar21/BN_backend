@@ -575,7 +575,8 @@ app.get('/api/user/logout', async (req, res)=>{
       secure: true,
       sameSite: 'strict',
       domain: 'blognes7.vercel.app',
-      path: '/'
+      path: '/',
+      expires: new Date(Date.now()),
       
       
     });
