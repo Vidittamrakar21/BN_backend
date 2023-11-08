@@ -570,7 +570,17 @@ app.get('/api/user/logout', async (req, res)=>{
     // if(blognesttoken){
 
       
-    res.clearCookie("blognesttoken");
+    res.clearCookie("blognesttoken",{
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      domain: 'blognes7.vercel.app',
+      path: '/',
+      expires: Date.now(0)
+      
+    });
+
+    
       
       res.json({ message: 'Logged out successfully !' });
     // }
