@@ -45,9 +45,9 @@ cloudinary.config({
 
 const auth = (req,res,next) => {
   try {
-   const {token} = req.cookies;
-   if(token){
-    const user = jwt.verify(token,process.env.SECKEY);
+   const {blognesttoken} = req.cookies;
+   if(blognesttoken){
+    const user = jwt.verify(blognesttoken,process.env.SECKEY);
     req.userID = user.id;
     req.mail = user.email;
     req.name = user.name;
@@ -493,7 +493,7 @@ app.post('/api/login', async (req,res)=>{
             httpOnly: true
           }
 
-          res.status(200).cookie("token" , token, options).json({
+          res.status(200).cookie("blognesttoken" , token, options).json({
             success: true,
             token,
             existuser,
@@ -565,12 +565,12 @@ app.patch('/api/updateabout', async (req,res)=>{
 app.get('/api/user/logout', async (req, res)=>{
   try {
 
-    const {token} = req.cookies;
+    const {blognesttoken} = req.cookies;
 
-    if(token){
+    if(blognesttoken){
 
       
-      res.clearCookie("token");
+      res.clearCookie("blognesttoken");
       
       res.json({ message: 'Logged out successfully !' });
     }
