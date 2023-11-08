@@ -565,19 +565,19 @@ app.patch('/api/updateabout', async (req,res)=>{
 app.get('/api/user/logout', async (req, res)=>{
   try {
 
-    const {blognesttoken} = req.cookies;
+    // const {blognesttoken} = req.cookies;
 
-    if(blognesttoken){
+    // if(blognesttoken){
 
       
       res.clearCookie("blognesttoken");
       
       res.json({ message: 'Logged out successfully !' });
-    }
+    // }
 
-    else{
-      res.json({ message: 'unable to log out.' });
-    }
+    // else{
+    //   res.json({ message: 'unable to log out.' });
+    // }
     
   } catch (error) {
     console.log(error);
