@@ -570,7 +570,7 @@ app.get('/api/user/logout', async (req, res)=>{
     // if(blognesttoken){
 
       
-      res.clearCookie("blognesttoken");
+    res.clearCookie("blognesttoken");
       
       res.json({ message: 'Logged out successfully !' });
     // }

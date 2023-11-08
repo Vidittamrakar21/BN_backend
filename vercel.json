@@ -37,6 +37,11 @@
        "dest": "build/images"
    },
 
+   {
+    "src": "/api/user/logout",
+   "dest": "index.js"
+},
+
           {
              "src": "/api/upload/:id",
             "dest": "index.js"
