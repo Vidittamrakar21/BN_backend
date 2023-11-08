@@ -570,7 +570,12 @@ app.get('/api/user/logout', async (req, res)=>{
     // if(blognesttoken){
 
       
-    res.clearCookie("blognesttoken");
+    res.clearCookie("blognesttoken",{
+      expires: new Date(0), // Set the cookie to expire immediately
+      httpOnly: true, // Ensures the cookie is only accessible via HTTP(S) requests
+      secure: true, // Sends the cookie only over HTTPS
+      sameSite: 'strict' // Restricts the cookie to be sent in same-site requests
+    });
       
       res.json({ message: 'Logged out successfully !' });
     // }
