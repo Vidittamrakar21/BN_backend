@@ -571,6 +571,8 @@ app.get('/api/user/logout', async (req, res)=>{
 
       
     res.clearCookie("blognesttoken",{
+      domain: 'blognes7.vercel.app', // Set the appropriate domain
+      path: '/',
       expires: new Date(0), // Set the cookie to expire immediately
       httpOnly: true, // Ensures the cookie is only accessible via HTTP(S) requests
       secure: true, // Sends the cookie only over HTTPS
