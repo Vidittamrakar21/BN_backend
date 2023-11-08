@@ -19,7 +19,8 @@ const cloudinary = require('cloudinary').v2;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: true, credentials: true }))
 app.use(cookieparser());
 app.use(morgan("tiny"));
 app.use(express.static('build'));
@@ -573,7 +574,7 @@ app.get('/api/user/logout', async (req, res)=>{
     res.clearCookie("blognesttoken",{
       httpOnly: true,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
       domain: 'blognes7.vercel.app',
       path: '/',
       expires: new Date(Date.now()),
